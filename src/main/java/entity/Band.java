@@ -1,4 +1,4 @@
-package com.bithappens.repository;
+package entity;
 
 public class Band {
     private Integer index;
