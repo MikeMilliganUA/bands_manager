@@ -1,6 +1,6 @@
 package com.bithappens.repository;
 
-import entity.Band;
+import com.bithappens.entity.Band;
 
 import java.util.List;
 
