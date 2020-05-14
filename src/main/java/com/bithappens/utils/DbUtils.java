@@ -6,11 +6,15 @@ import java.sql.SQLException;
 
 public class DbUtils {
     public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         String url = "jdbc:postgresql://localhost:5432/bands_db";
         String user = "postgres";
         String password = "sacred";
 
-        Connection connection = DriverManager.getConnection(url, user, password);
-        return connection;
+        return DriverManager.getConnection(url, user, password);
     }
 }
