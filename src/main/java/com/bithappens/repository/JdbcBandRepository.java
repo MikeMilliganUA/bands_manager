@@ -14,10 +14,9 @@ public class JdbcBandRepository implements BandRepository {
     @Override
     public List<Band> findAll() {
         List<Band> result = new ArrayList<>();
-
+        String sql = "SELECT * FROM bands";
         try (Connection connection = DbUtils.getConnection()) {
             try (Statement statement = connection.createStatement()) {
-                String sql = "SELECT * FROM bands";
                 try (ResultSet rs = statement.executeQuery(sql)) {
                     while (rs.next()) {
                         Band band = new Band();
@@ -30,19 +29,18 @@ public class JdbcBandRepository implements BandRepository {
 
                         result.add(band);
                     }
+                    return result;
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
-        return result;
     }
 
     @Override
     public Band findById(Integer id) {
         Band band = null;
         String sql = "SELECT * FROM bands WHERE index = ?";
-
         try (Connection connection = DbUtils.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, id);
@@ -56,12 +54,12 @@ public class JdbcBandRepository implements BandRepository {
                         band.setYear(rs.getInt("year"));
                         band.setAlbumsCount(rs.getInt("albumsCount"));
                     }
+                    return band;
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
-        return band;
     }
 }
 
