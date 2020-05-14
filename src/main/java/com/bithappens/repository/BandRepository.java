@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface BandRepository {
 
-    List<Band> findAll() throws SQLException;
+    List<Band> findAll();
 
-    Band findById(Integer id) throws SQLException;
+    Band findById(Integer id);
 
 }
