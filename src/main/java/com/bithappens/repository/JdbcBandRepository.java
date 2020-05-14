@@ -1,6 +1,7 @@
 package com.bithappens.repository;
 
 import com.bithappens.entity.Band;
+import com.bithappens.utils.DbUtils;
 
 import java.sql.*;
 import java.sql.Statement;
@@ -9,17 +10,14 @@ import java.util.List;
 
 public class JdbcBandRepository implements BandRepository {
 
+
+
     @Override
     public List<Band> findAll() throws SQLException {
         List<Band> result = new ArrayList<>();
-        String url = "jdbc:postgresql://localhost:5432/bands_db";
-        String user = "postgres";
-        String password = "sacred";
 
-        Connection connection = DriverManager.getConnection(url, user, password);
-
-        Statement statement = connection.createStatement();
-        String sql = "select * from bands";
+        Statement statement = DbUtils.getConnection().createStatement();
+        String sql = "SELECT * FROM bands";
         ResultSet rs = statement.executeQuery(sql);
 
         while (rs.next()) {
@@ -39,7 +37,10 @@ public class JdbcBandRepository implements BandRepository {
     }
 
     @Override
-    public List<Band> findById() throws SQLException {
+    public Band findById() {
+
         return null;
     }
-}
+     
+    }
+
