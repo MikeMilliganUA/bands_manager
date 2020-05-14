@@ -9,6 +9,6 @@ public interface BandRepository {
 
     List<Band> findAll() throws SQLException;
 
-    List<Band> findById() throws SQLException;
+    Band findById(Integer id) throws SQLException;
 
 }
