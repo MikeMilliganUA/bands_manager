@@ -14,24 +14,24 @@ public class JdbcBandRepository implements BandRepository {
     @Override
     public List<Band> findAll() throws SQLException {
         List<Band> result = new ArrayList<>();
+        ResultSet rs = null;
+        try {
+            Statement statement = DbUtils.getConnection().createStatement();
+            String sql = "SELECT * FROM bands";
+            rs = statement.executeQuery(sql);
+        } finally {
+            while (rs.next()) {
+                Band band = new Band();
+                band.setIndex(rs.getInt("index"));
+                band.setName(rs.getString("name"));
+                band.setCountry(rs.getString("country"));
+                band.setGenre(rs.getString("genre"));
+                band.setYear(rs.getInt("year"));
+                band.setAlbumsCount(rs.getInt("albumsCount"));
 
-        Statement statement = DbUtils.getConnection().createStatement();
-        String sql = "SELECT * FROM bands";
-        ResultSet rs = statement.executeQuery(sql);
-
-        while (rs.next()) {
-            Band band = new Band();
-            band.setIndex(rs.getInt("index"));
-            band.setName(rs.getString("name"));
-            band.setCountry(rs.getString("country"));
-            band.setGenre(rs.getString("genre"));
-            band.setYear(rs.getInt("year"));
-            band.setAlbumsCount(rs.getInt("albumsCount"));
-
-            result.add(band);
+                result.add(band);
+            }
         }
-        rs.close();
-        statement.close();
         return result;
     }
 
@@ -39,21 +39,22 @@ public class JdbcBandRepository implements BandRepository {
     public Band findById(Integer id) throws SQLException {
         Band band = null;
         String sql = "SELECT * FROM bands WHERE index = ?";
-        PreparedStatement ps = DbUtils.getConnection().prepareStatement(sql);
-        ps.setInt(1, id);
-        ResultSet rs = ps.executeQuery();
-
-        if (rs.next()) {
-            band = new Band();
-            band.setIndex(rs.getInt("index"));
-            band.setName(rs.getString("name"));
-            band.setCountry(rs.getString("country"));
-            band.setGenre(rs.getString("genre"));
-            band.setYear(rs.getInt("year"));
-            band.setAlbumsCount(rs.getInt("albumsCount"));
+        ResultSet rs = null;
+        try {
+           PreparedStatement ps = DbUtils.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+        } finally {
+            if (rs.next()) {
+                band = new Band();
+                band.setIndex(rs.getInt("index"));
+                band.setName(rs.getString("name"));
+                band.setCountry(rs.getString("country"));
+                band.setGenre(rs.getString("genre"));
+                band.setYear(rs.getInt("year"));
+                band.setAlbumsCount(rs.getInt("albumsCount"));
+            }
         }
-        rs.close();
-        ps.close();
         return band;
     }
 }
