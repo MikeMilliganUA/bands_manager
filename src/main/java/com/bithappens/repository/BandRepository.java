@@ -10,4 +10,6 @@ public interface BandRepository {
 
     Band findById(Integer id);
 
+    List<Band> findGroupsEstimatedAfter(Integer year);
+
 }

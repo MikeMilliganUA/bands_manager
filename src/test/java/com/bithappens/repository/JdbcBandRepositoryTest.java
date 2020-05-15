@@ -11,7 +11,7 @@ public class JdbcBandRepositoryTest {
     private BandRepository bandRepository;
 
     @Before
-    public void setUp() throws Exception {             //Exception?
+    public void setUp() {
         bandRepository = new JdbcBandRepository();
     }
 
@@ -25,5 +25,11 @@ public class JdbcBandRepositoryTest {
     public void testFindById() {
         Band band = bandRepository.findById(25);
         System.out.println(band);
+    }
+
+    @Test
+    public void findGroupsEstimatedAfter() {
+        List<Band> after = bandRepository.findGroupsEstimatedAfter(1990);
+        System.out.println(after);
     }
 }

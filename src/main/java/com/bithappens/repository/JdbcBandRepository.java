@@ -61,5 +61,31 @@ public class JdbcBandRepository implements BandRepository {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<Band> findGroupsEstimatedAfter(Integer year) {
+        List<Band> result = new ArrayList<>();
+        String sql = "SELECT * FROM bands WHERE year > ?";
+        try (Connection connection = DbUtils.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1,year);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        Band band = new Band();
+                        band.setId(rs.getInt("id"));
+                        band.setName(rs.getString("name"));
+                        band.setCountry(rs.getString("country"));
+                        band.setGenre(rs.getString("genre"));
+                        band.setYear(rs.getInt("year"));
+                        band.setAlbumsCount(rs.getInt("albums_count"));
+                        result.add(band);
+                    }
+                    return result;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
