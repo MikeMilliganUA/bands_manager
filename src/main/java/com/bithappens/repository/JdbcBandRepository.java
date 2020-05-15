@@ -20,12 +20,12 @@ public class JdbcBandRepository implements BandRepository {
                 try (ResultSet rs = statement.executeQuery(sql)) {
                     while (rs.next()) {
                         Band band = new Band();
-                        band.setIndex(rs.getInt("index"));
+                        band.setId(rs.getInt("id"));
                         band.setName(rs.getString("name"));
                         band.setCountry(rs.getString("country"));
                         band.setGenre(rs.getString("genre"));
                         band.setYear(rs.getInt("year"));
-                        band.setAlbumsCount(rs.getInt("albumsCount"));
+                        band.setAlbumsCount(rs.getInt("albums_count"));
 
                         result.add(band);
                     }
@@ -40,19 +40,19 @@ public class JdbcBandRepository implements BandRepository {
     @Override
     public Band findById(Integer id) {
         Band band = null;
-        String sql = "SELECT * FROM bands WHERE index = ?";
+        String sql = "SELECT * FROM bands WHERE id = ?";
         try (Connection connection = DbUtils.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, id);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next()) {
                         band = new Band();
-                        band.setIndex(rs.getInt("index"));
+                        band.setId(rs.getInt("id"));
                         band.setName(rs.getString("name"));
                         band.setCountry(rs.getString("country"));
                         band.setGenre(rs.getString("genre"));
                         band.setYear(rs.getInt("year"));
-                        band.setAlbumsCount(rs.getInt("albumsCount"));
+                        band.setAlbumsCount(rs.getInt("albums_count"));
                     }
                     return band;
                 }
