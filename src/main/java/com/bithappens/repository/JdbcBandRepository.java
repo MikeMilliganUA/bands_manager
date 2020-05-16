@@ -11,6 +11,17 @@ import java.util.List;
 public class JdbcBandRepository implements BandRepository {
 
 
+    private Band extractBand(ResultSet rs) throws SQLException {
+        Band band = new Band();
+        band.setId(rs.getInt("id"));
+        band.setName(rs.getString("name"));
+        band.setCountry(rs.getString("country"));
+        band.setGenre(rs.getString("genre"));
+        band.setYear(rs.getInt("year"));
+        band.setAlbumsCount(rs.getInt("albums_count"));
+        return band;
+    }
+
     @Override
     public List<Band> findAll() {
         List<Band> result = new ArrayList<>();
@@ -18,17 +29,7 @@ public class JdbcBandRepository implements BandRepository {
         try (Connection connection = DbUtils.getConnection()) {
             try (Statement statement = connection.createStatement()) {
                 try (ResultSet rs = statement.executeQuery(sql)) {
-                    while (rs.next()) {
-                        Band band = new Band();
-                        band.setId(rs.getInt("id"));
-                        band.setName(rs.getString("name"));
-                        band.setCountry(rs.getString("country"));
-                        band.setGenre(rs.getString("genre"));
-                        band.setYear(rs.getInt("year"));
-                        band.setAlbumsCount(rs.getInt("albums_count"));
-
-                        result.add(band);
-                    }
+                    while (rs.next()) result.add(extractBand(rs));
                     return result;
                 }
             }
@@ -39,22 +40,13 @@ public class JdbcBandRepository implements BandRepository {
 
     @Override
     public Band findById(Integer id) {
-        Band band = null;
         String sql = "SELECT * FROM bands WHERE id = ?";
         try (Connection connection = DbUtils.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, id);
                 try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next()) {
-                        band = new Band();
-                        band.setId(rs.getInt("id"));
-                        band.setName(rs.getString("name"));
-                        band.setCountry(rs.getString("country"));
-                        band.setGenre(rs.getString("genre"));
-                        band.setYear(rs.getInt("year"));
-                        band.setAlbumsCount(rs.getInt("albums_count"));
-                    }
-                    return band;
+                    if (rs.next()) extractBand(rs);
+                    return extractBand(rs);
                 }
             }
         } catch (SQLException e) {
@@ -68,18 +60,9 @@ public class JdbcBandRepository implements BandRepository {
         String sql = "SELECT * FROM bands WHERE year > ?";
         try (Connection connection = DbUtils.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1,year);
+                ps.setInt(1, year);
                 try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
-                        Band band = new Band();
-                        band.setId(rs.getInt("id"));
-                        band.setName(rs.getString("name"));
-                        band.setCountry(rs.getString("country"));
-                        band.setGenre(rs.getString("genre"));
-                        band.setYear(rs.getInt("year"));
-                        band.setAlbumsCount(rs.getInt("albums_count"));
-                        result.add(band);
-                    }
+                    while (rs.next()) result.add(extractBand(rs));
                     return result;
                 }
             }
