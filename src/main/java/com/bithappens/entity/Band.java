@@ -53,4 +53,16 @@ public class Band {
     public void setAlbumsCount(Integer albumsCount) {
         this.albumsCount = albumsCount;
     }
+
+    @Override
+    public String toString() {
+        return "Band{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", country='" + country + '\'' +
+                ", genre='" + genre + '\'' +
+                ", year=" + year +
+                ", albumsCount=" + albumsCount +
+                '}';
+    }
 }

@@ -18,7 +18,9 @@ public class JdbcBandRepositoryTest {
     @Test
     public void testFindAll() {
         List<Band> allBands = bandRepository.findAll();
-        System.out.println(allBands);
+        for (Band band : allBands) {
+            System.out.println(band);
+        }
     }
 
     @Test
