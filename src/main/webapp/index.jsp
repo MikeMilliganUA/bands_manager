@@ -36,5 +36,10 @@
                 </c:forEach>
             </tbody>
         </table>
+        <p>
+        <a href="about.jsp">
+            about
+        </a>
+        </p>
     </body>
 </html>

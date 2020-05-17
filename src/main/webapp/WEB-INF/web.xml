@@ -4,4 +4,24 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         version="2.5">
+
+    <display-name>Test</display-name>
+
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.bithappens.servlet.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/myTestServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HomeServlet2</servlet-name>
+        <servlet-class>com.bithappens.servlet.HomeServlet2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HomeServlet2</servlet-name>
+        <url-pattern>/myTestServlet2</url-pattern>
+    </servlet-mapping>
 </web-app>

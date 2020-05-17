@@ -25,7 +25,7 @@ public class JdbcBandRepositoryTest {
 
     @Test
     public void testFindById() {
-        Band band = bandRepository.findById(25);
+        Band band = bandRepository.findById(5);
         System.out.println(band);
     }
 
