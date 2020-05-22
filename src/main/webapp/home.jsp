@@ -26,6 +26,7 @@
                         <th>Genre</th>
                         <th>Year</th>
                         <th class="center aligned">Albums Count</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,13 @@
                             </td>
                             <td>${band.year}</td>
                             <td class="center aligned">${band.albumsCount}</td>
+                            <td>
+                                <div class="ui small basic icon buttons">
+                                    <button class="negative ui button" onclick="alert('${band.name}')">
+                                        <i class="trash icon"></i>
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
