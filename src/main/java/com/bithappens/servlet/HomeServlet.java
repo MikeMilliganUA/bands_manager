@@ -5,12 +5,14 @@ import com.bithappens.repository.BandRepository;
 import com.bithappens.repository.JdbcBandRepository;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+@WebServlet("/")
 public class HomeServlet extends HttpServlet {
 
     BandRepository bandRepository = new JdbcBandRepository();
