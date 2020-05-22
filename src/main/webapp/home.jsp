@@ -10,6 +10,16 @@
                 margin-top: 3em;
             }
         </style>
+        <script>
+            function sendDeleteByIdRequest(id) {
+                $.ajax({
+                    url:'/bands_manager_war/band?id='+id,
+                    method:'DELETE'
+                }).done(function () {
+                    location.reload();
+                });
+            }
+        </script>
         <title>
             Bands Manager
         </title>
@@ -42,7 +52,7 @@
                             <td class="center aligned">${band.albumsCount}</td>
                             <td>
                                 <div class="ui small basic icon buttons">
-                                    <button class="negative ui button" onclick="alert('${band.name}')">
+                                    <button class="negative ui button" onclick="sendDeleteByIdRequest('${band.id}')">
                                         <i class="trash icon"></i>
                                     </button>
                                 </div>
