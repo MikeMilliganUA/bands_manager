@@ -34,4 +34,9 @@ public class JdbcBandRepositoryTest {
         List<Band> after = bandRepository.findGroupsEstimatedAfter(1990);
         System.out.println(after);
     }
+
+    @Test
+    public void deleteById() {
+        bandRepository.deleteById(40);
+    }
 }

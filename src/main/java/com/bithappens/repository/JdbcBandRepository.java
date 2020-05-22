@@ -66,6 +66,19 @@ public class JdbcBandRepository implements BandRepository {
         }
     }
 
+    @Override
+    public void deleteById(Integer id) {
+        String sql = "DELETE FROM bands WHERE id = ?";
+        try (Connection connection = DbUtils.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Band extractBand(ResultSet rs) throws SQLException {
         Band band = new Band();
         band.setId(rs.getInt("id"));
