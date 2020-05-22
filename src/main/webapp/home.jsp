@@ -1,14 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.bithappens.repository.BandRepository" %>
-<%@ page import="com.bithappens.repository.JdbcBandRepository" %>
-<%@ page import="com.bithappens.entity.Band" %>
-<%@ page import="java.util.List" %>
-
-<%
-    BandRepository bandRepository = new JdbcBandRepository();
-    List<Band> allBands = bandRepository.findAll();
-    request.setAttribute("allBands", allBands);
-%>
 
 <html>
     <head>
