@@ -1,5 +1,6 @@
 package com.bithappens.servlet;
 
+import com.bithappens.entity.Band;
 import com.bithappens.repository.BandRepository;
 import com.bithappens.repository.JdbcBandRepository;
 
@@ -11,9 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(value = "/band")
-public class DeleteBandServlet extends HttpServlet {
+public class BandServlet extends HttpServlet {
 
     BandRepository bandRepository = new JdbcBandRepository();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        Band band = bandRepository.findById(Integer.valueOf(id));
+        req.setAttribute("band", band);
+        req.getRequestDispatcher("bandPage.jsp").forward(req, resp);
+    }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

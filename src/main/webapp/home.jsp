@@ -13,8 +13,8 @@
         <script>
             function sendDeleteByIdRequest(id) {
                 $.ajax({
-                    url:'/bands_manager_war/band?id='+id,
-                    method:'DELETE'
+                    url: '/bands_manager_war/band?id=' + id,
+                    method: 'DELETE'
                 }).done(function () {
                     location.reload();
                 });
@@ -43,7 +43,11 @@
                     <c:forEach var="band" items="${allBands}">
                         <tr>
                             <td class="center aligned">${band.id}</td>
-                            <td><b>${band.name}</b></td>
+                            <td>
+                                <a href="/bands_manager_war/band?id=${band.id}">
+                                    <strong>${band.name}</strong>
+                                </a>
+                            </td>
                             <td>${band.country}</td>
                             <td>
                                 <div class="ui horizontal label">${band.genre}</div>
