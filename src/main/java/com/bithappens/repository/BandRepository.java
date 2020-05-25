@@ -14,4 +14,6 @@ public interface BandRepository {
 
     void deleteById(Integer id);
 
+    List <Band> bandByGenre(String s);
+
 }

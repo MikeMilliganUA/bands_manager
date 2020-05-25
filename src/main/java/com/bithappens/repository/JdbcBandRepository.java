@@ -79,6 +79,25 @@ public class JdbcBandRepository implements BandRepository {
         }
     }
 
+    @Override
+    public List<Band> bandByGenre(String s) {
+        List<Band> result = new ArrayList<>();
+        String sql = "SELECT * FROM bands WHERE genre = ?";
+        try (Connection connection = DbUtils.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, s);
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
+                        result.add(extractBand(rs));
+                    }
+                    return result;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Band extractBand(ResultSet rs) throws SQLException {
         Band band = new Band();
         band.setId(rs.getInt("id"));

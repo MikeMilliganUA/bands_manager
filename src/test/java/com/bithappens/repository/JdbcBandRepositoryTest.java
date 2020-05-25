@@ -39,4 +39,10 @@ public class JdbcBandRepositoryTest {
     public void deleteById() {
         bandRepository.deleteById(40);
     }
+
+    @Test
+    public void bandByGenre() {
+        List<Band> byGenre = bandRepository.bandByGenre("thrash metal");
+        System.out.println(byGenre);
+    }
 }
