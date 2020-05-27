@@ -105,7 +105,6 @@ public class JdbcBandRepository implements BandRepository {
         band.setCountry(rs.getString("country"));
         band.setGenre(rs.getString("genre"));
         band.setYear(rs.getInt("year"));
-        band.setAlbumsCount(rs.getInt("albums_count"));
         return band;
     }
 }

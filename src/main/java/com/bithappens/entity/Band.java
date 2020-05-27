@@ -6,7 +6,7 @@ public class Band {
     private String country;
     private String genre;
     private Integer year;
-    private Integer albumsCount;
+
 
     public Integer getId() { return id; }
 
@@ -46,14 +46,6 @@ public class Band {
         this.year = year;
     }
 
-    public Integer getAlbumsCount() {
-        return albumsCount;
-    }
-
-    public void setAlbumsCount(Integer albumsCount) {
-        this.albumsCount = albumsCount;
-    }
-
     @Override
     public String toString() {
         return "Band{" +
@@ -62,7 +54,6 @@ public class Band {
                 ", country='" + country + '\'' +
                 ", genre='" + genre + '\'' +
                 ", year=" + year +
-                ", albumsCount=" + albumsCount +
                 '}';
     }
 }
