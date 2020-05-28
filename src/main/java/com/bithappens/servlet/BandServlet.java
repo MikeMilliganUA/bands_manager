@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(value = "/band")
+@WebServlet("/band")
 public class BandServlet extends HttpServlet {
 
     BandRepository bandRepository = new JdbcBandRepository();

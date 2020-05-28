@@ -43,6 +43,8 @@ public class JdbcBandRepositoryTest {
     @Test
     public void bandByGenre() {
         List<Band> byGenre = bandRepository.bandByGenre("thrash metal");
-        System.out.println(byGenre);
+        for (Band band : byGenre) {
+            System.out.println(band);
+        }
     }
 }

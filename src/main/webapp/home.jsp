@@ -49,7 +49,9 @@
                 </td>
                 <td>${band.country}</td>
                 <td>
+                    <a href="/bands_manager_war/genre?genre=${band.genre}">
                     <div class="ui horizontal label">${band.genre}</div>
+                    </a>
                 </td>
                 <td>${band.year}</td>
                 <td>

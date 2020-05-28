@@ -22,6 +22,6 @@ public class GenreServlet extends HttpServlet {
         String s = req.getParameter("genre");
         List<Band> bandsByGenre = bandRepository.bandByGenre(s);
         req.setAttribute("genre", bandsByGenre);
-        req.getRequestDispatcher("byGenre.jsp").forward(req, resp);
+        req.getRequestDispatcher("bandsByGenre.jsp").forward(req, resp);
     }
 }
