@@ -19,9 +19,9 @@ public class GenreServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String s = req.getParameter("genre");
-        List<Band> bandsByGenre = bandRepository.bandByGenre(s);
-        req.setAttribute("genre", bandsByGenre);
-        req.getRequestDispatcher("bandsByGenre.jsp").forward(req, resp);
+        String genre = req.getParameter("genre");
+        List<Band> bandsByGenre = bandRepository.bandByGenre(genre);
+        req.setAttribute("bands", bandsByGenre);
+        req.getRequestDispatcher("byGenre.jsp").forward(req, resp);
     }
 }
