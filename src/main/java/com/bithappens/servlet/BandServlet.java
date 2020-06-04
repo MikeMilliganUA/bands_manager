@@ -20,8 +20,13 @@ public class BandServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         Band band = bandRepository.findById(Integer.valueOf(id));
-        req.setAttribute("band", band);
-        req.getRequestDispatcher("bandPage.jsp").forward(req, resp);
+        if (band != null) {
+            req.setAttribute("band", band);
+            req.getRequestDispatcher("bandPage.jsp").forward(req, resp);
+        } else {
+            resp.setStatus(404);
+            req.getRequestDispatcher("notFound.jsp").forward(req, resp);
+        }
     }
 
     @Override
@@ -29,4 +34,6 @@ public class BandServlet extends HttpServlet {
         String idToDelete = req.getParameter("id");
         bandRepository.deleteById(Integer.valueOf(idToDelete));
     }
+
+
 }
