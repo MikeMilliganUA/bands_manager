@@ -50,6 +50,6 @@ public class JdbcBandRepositoryTest {
 
     @Test
     public void addNewBandTest() {
-        bandRepository.addNewBand(34, "Alter Bridge", "USA", "rock", 2004);
+        bandRepository.addNewBand("Ghost", "Sweden", "rock", 2006);
     }
 }

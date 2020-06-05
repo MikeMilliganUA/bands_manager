@@ -16,5 +16,5 @@ public interface BandRepository {
 
     List<Band> bandByGenre(String s);
 
-    void addNewBand(Integer id, String name, String country, String genre, Integer year);
+    void addNewBand(String name, String country, String genre, Integer year);
 }
