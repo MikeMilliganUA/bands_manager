@@ -15,4 +15,6 @@ public interface BandRepository {
     void deleteById(Integer id);
 
     List<Band> bandByGenre(String s);
+
+    void addNewBand(Integer id, String name, String country, String genre, Integer year);
 }

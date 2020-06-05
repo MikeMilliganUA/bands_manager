@@ -98,6 +98,23 @@ public class JdbcBandRepository implements BandRepository {
         }
     }
 
+    @Override
+    public void addNewBand(Integer id, String name, String country, String genre, Integer year) {
+        String sql = "INSERT INTO bands (id, name, country, genre, year)" + " VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = DbUtils.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, id);
+                ps.setString(2, name);
+                ps.setString(3, country);
+                ps.setString(4, genre);
+                ps.setInt(5, year);
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Band extractBand(ResultSet rs) throws SQLException {
         Band band = new Band();
         band.setId(rs.getInt("id"));

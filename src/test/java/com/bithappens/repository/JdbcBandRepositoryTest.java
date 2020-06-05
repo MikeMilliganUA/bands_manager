@@ -47,4 +47,9 @@ public class JdbcBandRepositoryTest {
             System.out.println(band);
         }
     }
+
+    @Test
+    public void addNewBandTest() {
+        bandRepository.addNewBand(34, "Alter Bridge", "USA", "rock", 2004);
+    }
 }
