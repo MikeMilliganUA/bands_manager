@@ -31,15 +31,16 @@ public class AddBandServlet extends HttpServlet {
 
         PrintWriter printWriter = resp.getWriter();
 
-        /*printWriter.print("<html>");
+        printWriter.print("<html>");
         printWriter.print("<body>");
         printWriter.print("<h1>New band info</h1>");
         printWriter.print("<p> Name :: " + name + "</p>");
         printWriter.print("<p> Country :: " + country + "</p>");
         printWriter.print("<p> Genre :: " + genre + "</p>");
         printWriter.print("<p> Year :: " + year + "</p>");
+        printWriter.print("<a href=/bands_manager_war> Back </a");
         printWriter.print("</body>");
-        printWriter.print("</html>");*/
+        printWriter.print("</html>");
 
         printWriter.close();
     }
