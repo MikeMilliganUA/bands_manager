@@ -27,6 +27,7 @@
 
 <body>
 <div class="ui main text container">
+    <a href="createNewBand.jsp"  class="ui button">Add new band</a>
     <table class="ui black celled striped table">
         <thead style="text-align:left">
         <tr>
